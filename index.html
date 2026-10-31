@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Главная — H-studio</title>
+<meta name="description" content="H-studio — архитектура и дизайн интерьеров в Москве: квартиры, частные дома, коммерческие пространства. От идеи до авторского надзора.">
+<link rel="stylesheet" href="css/site.css">
+<style>body{margin:0}</style>
+</head>
+<body>
+<div id="app"></div>
+<template id="tpl">
+
+<div class="page {{pageClass}}" data-theme="{{themeAttr}}">
+
+  <header class="header {{headerClass}} {{menuClass}} {{megaCls}} {{navCls}}" onMouseEnter="{{navHover}}" onMouseLeave="{{navLeave}}">
+    <div class="wrap">
+      <a href="index.html" class="logo" aria-label="H-studio — на главную"><sc-if value="{{logoBeam}}" hint-placeholder-val="{{ false }}"><svg class="mark" viewBox="0 0 100 100" fill="currentColor" aria-hidden="true"><rect x="8" y="10" width="84" height="10"/><rect x="8" y="80" width="84" height="10"/><rect x="45" y="20" width="10" height="60"/></svg></sc-if><sc-if value="{{logoDots}}" hint-placeholder-val="{{ true }}"><svg class="mark" viewBox="0 0 100 100" fill="currentColor" aria-hidden="true"><circle cx="22" cy="10" r="7"/><circle cx="22" cy="50" r="7"/><circle cx="22" cy="90" r="7"/><circle cx="78" cy="10" r="7"/><circle cx="78" cy="50" r="7"/><circle cx="78" cy="90" r="7"/><circle cx="50" cy="50" r="7"/></svg></sc-if><span class="word">studio</span></a>
+      <nav class="nav-links" aria-label="Основное меню"><div class="nav-item {{megaProjectsCls}}" onMouseEnter="{{openProjects}}"><a href="projects.html" class="has-mega" onClick="{{toggleProjects}}">Проекты<svg class="chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></a></div><div class="nav-item {{megaServicesCls}}" onMouseEnter="{{openServices}}"><a href="services.html" class="has-mega" onClick="{{toggleServices}}">Услуги<svg class="chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></a></div><div class="nav-item {{megaAboutCls}}" onMouseEnter="{{openAbout}}"><a href="about.html" class="has-mega" onClick="{{toggleAbout}}">Обо мне<svg class="chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></a></div><div class="nav-item" onMouseEnter="{{closeMega}}" onMouseLeave="{{keepMega}}"><a href="contacts.html" class="">Контакты</a></div><span class="nav-sep" aria-hidden="true"></span><a href="contacts.html" class="nav-cta">Оставить заявку</a></nav>
+      <div style="display: flex; align-items: center; gap: 12px">
+        <button type="button" class="theme-btn" onClick="{{toggleTheme}}" aria-label="Переключить тему" title="Тема: {{themeLabel}}">
+          <sc-if value="{{isDark}}" hint-placeholder-val="{{ false }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg></sc-if>
+          <sc-if value="{{isLight}}" hint-placeholder-val="{{ true }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path></svg></sc-if>
+        </button>
+        <button class="burger btn btn-outline btn-small" type="button" aria-label="{{menuLabel}}" aria-expanded="{{menuOpen}}" onClick="{{toggleMenu}}" style="padding: 0 12px">
+          <sc-if value="{{menuClosed}}" hint-placeholder-val="{{ true }}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 8h16M4 16h16"></path></svg></sc-if>
+          <sc-if value="{{menuOpen}}" hint-placeholder-val="{{ false }}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></sc-if>
+        </button>
+      </div>
+    </div><div class="mega-wrap {{megaWrapCls}}" onMouseEnter="{{keepMega}}"><div class="mega-clip"><div class="mega"><div class="mega-inner {{panelProjectsCls}}"><div class="mega-list"><a href="projects.html" class="{{subProjects0Cls}}" onMouseEnter="{{hoverProjects0}}">Все проекты<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a><a href="projects.html" class="{{subProjects1Cls}}" onMouseEnter="{{hoverProjects1}}">Квартиры<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a><a href="projects.html" class="{{subProjects2Cls}}" onMouseEnter="{{hoverProjects2}}">Частные дома<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a><a href="projects.html" class="{{subProjects3Cls}}" onMouseEnter="{{hoverProjects3}}">Коммерческие<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a><a href="project-office.html" class="{{subProjects4Cls}}" onMouseEnter="{{hoverProjects4}}">Новый проект<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div><div class="mega-pics"><a href="projects.html" class="mega-pic {{picProjects0Cls}}"><img src="img/acb4cf43eb6042edfe72c9bb55ae6608.jpg" alt=""><span>Квартира на Фрунзенской · 96 м²</span></a><a href="projects.html" class="mega-pic {{picProjects1Cls}}"><img src="img/f522ee8e9df284c6d55ecaca32072b09.jpg" alt=""><span>Квартира в Хамовниках · 72 м²</span></a><a href="projects.html" class="mega-pic {{picProjects2Cls}}"><img src="img/1f4186f60d4357378cbd1f9b1d6abe33.jpg" alt=""><span>Дом в Истре · 240 м²</span></a><a href="projects.html" class="mega-pic {{picProjects3Cls}}"><img src="img/0defa95ef70b6461b853b007f49bfb11.jpg" alt=""><span>Кафе на Покровке · 120 м²</span></a><a href="project-office.html" class="mega-pic {{picProjects4Cls}}"><img src="img/fba5eb058480203211ebb79eac2aa380.jpg" alt=""><span>Офис бюро на Патриарших · 180 м²</span></a></div></div><div class="mega-inner {{panelServicesCls}}"><div class="mega-list"><a href="services.html" class="{{subServices0Cls}}" onMouseEnter="{{hoverServices0}}">Дизайн-проект интерьера<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a><a href="services.html" class="{{subServices1Cls}}" onMouseEnter="{{hoverServices1}}">Архитектурное проектирование<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a><a href="services.html" class="{{subServices2Cls}}" onMouseEnter="{{hoverServices2}}">Авторский надзор<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a><a href="services.html" class="{{subServices3Cls}}" onMouseEnter="{{hoverServices3}}">Консультация<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a><a href="services.html" class="{{subServices4Cls}}" onMouseEnter="{{hoverServices4}}">Дизайн мебели<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div><div class="mega-pics"><a href="services.html" class="mega-pic {{picServices0Cls}}"><img src="img/f1d3cd6f0e1a965a65100eb24eb6c0c7.jpg" alt=""><span>Дизайн-проект интерьера</span></a><a href="services.html" class="mega-pic {{picServices1Cls}}"><img src="img/97d21a316151250e594b857ffbbe83d2.jpg" alt=""><span>Частный дом</span></a><a href="services.html" class="mega-pic {{picServices2Cls}}"><img src="img/e9b3207f6ac82ff24410cbb01c7da66d.jpg" alt=""><span>Авторский надзор на объекте</span></a><a href="services.html" class="mega-pic {{picServices3Cls}}"><img src="img/223c4c9a2c4d68f10972a30bb7f9488d.jpg" alt=""><span>Консультация по планировке</span></a><a href="services.html" class="mega-pic {{picServices4Cls}}"><img src="img/0010e7a9c66edbe21b821bbaaf9294e8.jpg" alt=""><span>Мебель по индивидуальным чертежам</span></a></div></div><div class="mega-inner {{panelAboutCls}}"><div class="mega-list"><a href="about.html" class="{{subAbout0Cls}}" onMouseEnter="{{hoverAbout0}}">Подход<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a><a href="about.html" class="{{subAbout1Cls}}" onMouseEnter="{{hoverAbout1}}">История<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a><a href="about.html" class="{{subAbout2Cls}}" onMouseEnter="{{hoverAbout2}}">Образование и награды<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a><a href="about.html" class="{{subAbout3Cls}}" onMouseEnter="{{hoverAbout3}}">Преподавание<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div><div class="mega-pics"><a href="about.html" class="mega-pic {{picAbout0Cls}}"><img src="img/841e76d8d4e2fd0f8ddf8acece6b9e04.jpg" alt=""><span>Офис бюро на Патриарших</span></a><a href="about.html" class="mega-pic {{picAbout1Cls}}"><img src="img/3b1b19ead3b20eabcf2f89fa54489767.jpg" alt=""><span>H-studio · архитектор</span></a><a href="about.html" class="mega-pic {{picAbout2Cls}}"><img src="img/af7ae81baa624015456ad97bf30e55d9.jpg" alt=""><span>МАРХИ · награда мастерской Тотана Кузембаева</span></a><a href="about.html" class="mega-pic {{picAbout3Cls}}"><img src="img/f1cb0d49230f79aadd6f845e3704599e.jpg" alt=""><span>Курсы подготовки в МАРХИ</span></a></div></div></div></div></div>
+  </header>
+  <sc-if value="{{menuOpen}}" hint-placeholder-val="{{ false }}">
+    <div class="mobile-menu" role="dialog" aria-label="Меню">
+      <nav aria-label="Мобильное меню">
+        <a href="projects.html" onClick="{{closeMenu}}">Проекты</a>
+        <a href="services.html" onClick="{{closeMenu}}">Услуги</a>
+        <a href="about.html" onClick="{{closeMenu}}">Обо мне</a>
+        <a href="contacts.html" onClick="{{closeMenu}}">Контакты</a>
+      </nav>
+      <div class="mobile-menu-foot">
+        <div class="contacts">
+          <a href="tel:+79991234567">+7 (999) 123-45-67</a>
+          <a href="mailto:h.studio.arch@mail.ru">h.studio.arch@mail.ru</a>
+        </div>
+        <a href="contacts.html" class="btn btn-dark" onClick="{{closeMenu}}">Оставить заявку</a>
+      </div>
+    </div>
+  </sc-if>
+
+  <div class="site-main">
+
+    <section id="top" class="hero">
+      <div class="hero-media ph has-pic hero-reel" role="img" aria-label="Видео: процесс работы над проектами"><span>Видео — во весь экран</span><img class="pic" src="img/513c3cd5c2ca3dc40020584167c0fa2a.jpg" alt=""><img class="pic" src="img/97d21a316151250e594b857ffbbe83d2.jpg" alt=""><img class="pic" src="img/f1d3cd6f0e1a965a65100eb24eb6c0c7.jpg" alt=""></div>
+      <div class="wrap hero-inner">
+        <p class="eyebrow">Архитектура · Интерьеры · Москва</p>
+        <h1 class="display">Пространства, которые остаются с вами надолго</h1>
+        <div class="hero-row">
+          <p>Частные дома, квартиры и коммерческие интерьеры — от первой идеи до авторского надзора. Один автор отвечает за результат на всех этапах.</p>
+          <div class="hero-actions">
+            <a href="projects.html" class="btn btn-light">Смотреть проекты</a>
+            <a href="contacts.html" class="btn btn-outline">Обсудить задачу</a>
+          </div>
+        </div>
+      </div>
+      <a href="#manifest" class="scroll-cue" aria-label="Листать вниз">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 10l6 6 6-6"></path></svg>
+      </a>
+    </section>
+
+
+    <section class="zmod intro">
+      <div class="wrap intro-grid">
+        <h2 class="intro-h display">Четыре года проектирую дома, квартиры и интерьеры</h2>
+        <p class="intro-p display">От первого эскиза до авторского надзора — один автор ведёт проект на всех этапах. Чертежи, коллажи, визуализации, подбор материалов и контроль на стройке в Москве и Подмосковье. Я проектирую не стиль, а образ жизни.</p>
+      </div>
+    </section>
+
+    <section class="zmod fcar-mod">
+      <div class="wrap heading-side">
+        <p class="tag">Проекты</p>
+        <h2 class="h1 display">Избранные работы</h2>
+        <p class="desc">Квартиры, частные дома и коммерческие пространства — восемь реализованных проектов, в каждом из которых я отвечала за результат от концепции до последнего предмета.</p>
+      </div>
+      <div class="fcar">
+        <div class="fcar-track" style="transform: translateX({{carX}})">
+          <div class="fcar-item"><a href="project-istra.html" class="fcard"><img src="img/1f4186f60d4357378cbd1f9b1d6abe33.jpg" alt="Дом в Истре"><div class="fcard-content"><div class="fcard-pre"><span class="chip">Проект</span><span class="count"><b>01</b> / 08</span><span class="info">Частный дом · 2025</span></div><h3 class="display">Дом в Истре</h3><span class="btn btn-dark btn-small fcard-cta">Смотреть проект</span></div></a></div><div class="fcar-item"><a href="project-office.html" class="fcard"><img src="img/acb4cf43eb6042edfe72c9bb55ae6608.jpg" alt="Квартира на Фрунзенской"><div class="fcard-content"><div class="fcard-pre"><span class="chip">Проект</span><span class="count"><b>02</b> / 08</span><span class="info">Квартира · 2026</span></div><h3 class="display">Квартира на Фрунзенской</h3><span class="btn btn-dark btn-small fcard-cta">Смотреть проект</span></div></a></div><div class="fcar-item"><a href="project-office.html" class="fcard"><img src="img/0defa95ef70b6461b853b007f49bfb11.jpg" alt="Кафе на Покровке"><div class="fcard-content"><div class="fcard-pre"><span class="chip">Проект</span><span class="count"><b>03</b> / 08</span><span class="info">Кафе · 2025</span></div><h3 class="display">Кафе на Покровке</h3><span class="btn btn-dark btn-small fcard-cta">Смотреть проект</span></div></a></div><div class="fcar-item"><a href="project-office.html" class="fcard"><img src="img/fba5eb058480203211ebb79eac2aa380.jpg" alt="Офис бюро на Патриарших"><div class="fcard-content"><div class="fcard-pre"><span class="chip">Проект</span><span class="count"><b>04</b> / 08</span><span class="info">Офис · 2026</span></div><h3 class="display">Офис бюро на Патриарших</h3><span class="btn btn-dark btn-small fcard-cta">Смотреть проект</span></div></a></div><div class="fcar-item"><a href="project-office.html" class="fcard"><img src="img/f522ee8e9df284c6d55ecaca32072b09.jpg" alt="Квартира в Хамовниках"><div class="fcard-content"><div class="fcard-pre"><span class="chip">Проект</span><span class="count"><b>05</b> / 08</span><span class="info">Квартира · 2024</span></div><h3 class="display">Квартира в Хамовниках</h3><span class="btn btn-dark btn-small fcard-cta">Смотреть проект</span></div></a></div><div class="fcar-item"><a href="project-istra.html" class="fcard"><img src="img/97d21a316151250e594b857ffbbe83d2.jpg" alt="Дом в Красногорске"><div class="fcard-content"><div class="fcard-pre"><span class="chip">Проект</span><span class="count"><b>06</b> / 08</span><span class="info">Загородный дом · 2023</span></div><h3 class="display">Дом в Красногорске</h3><span class="btn btn-dark btn-small fcard-cta">Смотреть проект</span></div></a></div><div class="fcar-item"><a href="project-office.html" class="fcard"><img src="img/ced7444c60e0d43f4f7901d0258c32c5.jpg" alt="Квартира на Таганке"><div class="fcard-content"><div class="fcard-pre"><span class="chip">Проект</span><span class="count"><b>07</b> / 08</span><span class="info">Квартира · 2023</span></div><h3 class="display">Квартира на Таганке</h3><span class="btn btn-dark btn-small fcard-cta">Смотреть проект</span></div></a></div><div class="fcar-item"><a href="project-office.html" class="fcard"><img src="img/f1cb0d49230f79aadd6f845e3704599e.jpg" alt="Шоурум на Дмитровке"><div class="fcard-content"><div class="fcard-pre"><span class="chip">Проект</span><span class="count"><b>08</b> / 08</span><span class="info">Шоурум · 2022</span></div><h3 class="display">Шоурум на Дмитровке</h3><span class="btn btn-dark btn-small fcard-cta">Смотреть проект</span></div></a></div>
+        </div>
+        <button type="button" class="fcar-ctl prev" onClick="{{carPrev}}" aria-label="Назад"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"></path></svg></button>
+        <button type="button" class="fcar-ctl next" onClick="{{carNext}}" aria-label="Вперёд"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+      </div>
+    </section>
+
+    <section class="zmod gmod">
+      <div class="wrap heading-side">
+        <p class="tag">Услуги</p>
+        <h2 class="h1 display">Что я делаю</h2>
+        <p class="desc">Любой масштаб и любой бюджет: от перепланировки квартиры до частного дома с участком. Всё, что нужно, чтобы проект был построен так, как задуман.</p>
+      </div>
+      <div class="wrap gcards">
+        <a href="services.html" class="gcard"><div class="gcard-media"><img src="img/f1d3cd6f0e1a965a65100eb24eb6c0c7.jpg" alt=""></div><h4>Дизайн-проект интерьера</h4><span class="btn btn-dark btn-small">Подробнее</span></a><a href="services.html" class="gcard"><div class="gcard-media"><img src="img/1f4186f60d4357378cbd1f9b1d6abe33.jpg" alt=""></div><h4>Архитектурное проектирование</h4><span class="btn btn-dark btn-small">Подробнее</span></a><a href="services.html" class="gcard"><div class="gcard-media"><img src="img/e9b3207f6ac82ff24410cbb01c7da66d.jpg" alt=""></div><h4>Авторский надзор</h4><span class="btn btn-dark btn-small">Подробнее</span></a><a href="services.html" class="gcard"><div class="gcard-media"><img src="img/0010e7a9c66edbe21b821bbaaf9294e8.jpg" alt=""></div><h4>Дизайн мебели</h4><span class="btn btn-dark btn-small">Подробнее</span></a>
+      </div>
+    </section>
+
+    <section class="zmod rt2 rt2-right">
+      <div class="rt2-card">
+        <div class="rt2-bg"><img src="img/841e76d8d4e2fd0f8ddf8acece6b9e04.jpg" alt=""></div>
+        <a href="project-office.html" class="rt2-small"><img src="img/fba5eb058480203211ebb79eac2aa380.jpg" alt=""><span class="chip chip-dark">Смотреть проект</span></a>
+        <div class="rt2-content">
+          <p class="tag">Обо мне</p>
+          <h2 class="h1 display">Обо мне</h2>
+          <p class="desc">Архитектор и дизайнер интерьеров, выпускница МАРХИ. Проектирую квартиры, дома и общественные пространства — от концепции до авторского надзора. Преподаю на курсах подготовки в МАРХИ, участвую в конкурсах.</p>
+          <div class="btn-row"><a href="about.html" class="btn btn-light">Подробнее<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a><a href="contacts.html" class="btn btn-outline">Связаться<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="zmod rt1">
+      <div class="rt1-card">
+        <div class="rt1-content">
+          <p class="tag">Процесс</p>
+          <h2 class="h1 display">От идеи до ключей</h2>
+          <p class="desc">Встреча и техническое задание, планировочные решения, концепция и визуализации, рабочие чертежи, комплектация и авторский надзор. Каждый этап согласуем вместе, без сюрпризов в смете и сроках.</p>
+          <div class="btn-row"><a href="services.html" class="btn btn-light">Как проходит работа<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div>
+        </div>
+        <div class="rt1-media"><img src="img/ddbeadd6a6d6bf376fb43fb10b67c7d7.jpg" alt=""></div>
+      </div>
+    </section>
+
+    <section class="zmod rt2 rt2-left">
+      <div class="rt2-card">
+        <div class="rt2-bg"><img src="img/97d21a316151250e594b857ffbbe83d2.jpg" alt=""></div>
+        <a href="project-istra.html" class="rt2-small"><img src="img/f1d3cd6f0e1a965a65100eb24eb6c0c7.jpg" alt=""><span class="chip chip-dark">Дом в Истре</span></a>
+        <div class="rt2-content">
+          <p class="tag">Заявка</p>
+          <h2 class="h1 display">Расскажите о вашем объекте</h2>
+          <p class="desc">Отвечу в течение рабочего дня и сориентирую по стоимости и срокам. Консультация — удобный первый шаг, если проект ещё только обдумываете.</p>
+          <div class="btn-row"><a href="contacts.html" class="btn btn-light">Оставить заявку<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="footer-slot" style="--fp: {{footerP}}"><div class="footer-anchor"><footer class="footer" style="--fp: {{footerP}}"><div class="footer-bg" aria-hidden="true"><img src="img/1f4186f60d4357378cbd1f9b1d6abe33.jpg" alt=""></div>
+    <div class="footer-inner"><div class="wrap">
+      <div class="footer-top">
+        <div class="wordmark"><div class="wm-row"><sc-if value="{{logoBeam}}" hint-placeholder-val="{{ false }}"><svg class="mark" viewBox="0 0 100 100" fill="currentColor" aria-hidden="true"><rect x="8" y="10" width="84" height="10"/><rect x="8" y="80" width="84" height="10"/><rect x="45" y="20" width="10" height="60"/></svg></sc-if><sc-if value="{{logoDots}}" hint-placeholder-val="{{ true }}"><svg class="mark" viewBox="0 0 100 100" fill="currentColor" aria-hidden="true"><circle cx="22" cy="10" r="7"/><circle cx="22" cy="50" r="7"/><circle cx="22" cy="90" r="7"/><circle cx="78" cy="10" r="7"/><circle cx="78" cy="50" r="7"/><circle cx="78" cy="90" r="7"/><circle cx="50" cy="50" r="7"/></svg></sc-if><span class="word">studio</span></div><svg class="tag" width="100%" height="14" aria-label="architecture &amp; interiors" role="img"><text x="0" y="11" textLength="100%" lengthAdjust="spacing" font-family="Manrope, sans-serif" font-weight="300" font-size="11" fill="currentColor">ARCHITECTURE &amp; INTERIORS</text></svg></div>
+        <div class="footer-cols">
+          <div class="footer-links">
+            <small>Навигация</small>
+            <a href="projects.html">Проекты</a>
+            <a href="services.html">Услуги</a>
+            <a href="about.html">Обо мне</a>
+            <a href="contacts.html">Контакты</a>
+          </div>
+          <div class="footer-links">
+            <small>Связь</small>
+            <a href="tel:+79991234567">+7 (999) 123-45-67</a>
+            <a href="mailto:h.studio.arch@mail.ru">h.studio.arch@mail.ru</a>
+            <a href="#top">Telegram</a>
+            <a href="#top">Instagram</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 H-studio. Архитектура и дизайн интерьеров</span>
+        <a href="#top">Политика конфиденциальности</a>
+      </div>
+    </div>
+  </div></footer></div></div>
+
+</div>
+</template>
+<script src="js/idiomorph.min.js"></script>
+<script src="js/dc-runtime.js"></script>
+<script>
+
+class Component extends DCLogic {
+  componentDidMount() {
+    this.mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+    this.onMq = () => this.forceUpdate();
+    if (this.mq && this.mq.addEventListener) this.mq.addEventListener('change', this.onMq);
+    this.lastY = 0;
+    this.onScroll = () => {
+      const y = window.scrollY || document.documentElement.scrollTop || 0;
+      const scrolled = y > 40;
+      const hidden = false;
+      if (scrolled && this.state?.navHover && !this.state?.mega) this.setState({ navHover: false });
+      this.lastY = y;
+      const doc = document.documentElement;
+      const fh = 356;
+      const slot = document.querySelector('.footer-slot');
+      const top = slot ? slot.getBoundingClientRect().top + y : doc.scrollHeight;
+      let fp = (y + window.innerHeight - top - 16) / fh;
+      fp = Math.round(Math.max(0, Math.min(1, fp)) * 25) / 25;
+      if (doc.scrollHeight <= window.innerHeight + 2) fp = 1;
+      if (scrolled !== this.state?.scrolled || hidden !== this.state?.hidden || fp !== (this.state?.fp || 0)) this.setState({ scrolled, hidden, fp });
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    this.onScroll();
+    setTimeout(this.onScroll, 300);
+    window.addEventListener('resize', this.onScroll);
+  }
+  componentWillUnmount() {
+    if (this.mq && this.mq.removeEventListener) this.mq.removeEventListener('change', this.onMq);
+    window.removeEventListener('scroll', this.onScroll);
+  }
+  logoVals() {
+    const v = this.props.logo ?? 'точки';
+    return { logoBeam: v !== 'точки', logoDots: v === 'точки' };
+  }
+  menuVals() {
+    const open = !!this.state?.menuOpen;
+    return {
+      menuOpen: open, menuClosed: !open,
+      menuClass: open ? 'is-open' : '',
+      menuLabel: open ? 'Закрыть меню' : 'Открыть меню',
+      toggleMenu: () => this.setState({ menuOpen: !open }),
+      closeMenu: () => this.setState({ menuOpen: false })
+    };
+  }
+  themeVals() {
+    const pref = this.state?.theme || 'auto';
+    const sysDark = !!(this.mq && this.mq.matches);
+    const isDark = pref === 'dark' || (pref === 'auto' && sysDark);
+    return {
+      themeAttr: pref === 'auto' ? '' : pref,
+      isDark, isLight: !isDark,
+      themeLabel: pref === 'auto' ? 'как на устройстве' : (pref === 'dark' ? 'тёмная' : 'светлая'),
+      toggleTheme: () => this.setState({ theme: isDark ? 'light' : 'dark' })
+    };
+  }
+  megaVals() {
+    const m = this.state?.mega || null;
+    const setMega = (k) => {
+      clearTimeout(this.megaT);
+      const delay = k ? (this.state?.mega ? 0 : 60) : 160;
+      this.megaT = setTimeout(() => { if ((this.state?.mega || null) !== k) this.setState({ mega: k, lastMega: k || this.state?.lastMega || null, sub: 0 }); }, delay);
+    };
+    const shown = m || this.state?.lastMega || null;
+    const sub = this.state?.sub || 0;
+    const v = { megaOpen: !!m, megaCls: m ? 'is-mega' : '', megaWrapCls: m ? 'is-open' : '', closeMega: () => setMega(null), keepMega: () => clearTimeout(this.megaT) };
+    for (const k of ['Projects','Services','About']) {
+      v['mega'+k] = m === k;
+      v['panel'+k+'Cls'] = shown === k ? 'is-on' : '';
+      v['mega'+k+'Cls'] = m === k ? 'is-open' : '';
+      v['open'+k] = () => setMega(k);
+      v['toggle'+k] = (e) => { if (window.matchMedia && window.matchMedia('(hover: none)').matches) { e.preventDefault(); clearTimeout(this.megaT); this.setState({ mega: m === k ? null : k, lastMega: k, sub: 0 }); } };
+      for (let i = 0; i < 5; i++) {
+        v['sub'+k+i+'Cls'] = (shown === k && sub === i) ? 'is-hot' : '';
+        v['pic'+k+i+'Cls'] = (shown === k && sub === i) ? 'is-on' : '';
+        v['hover'+k+i] = () => { if (this.state?.sub !== i) this.setState({ sub: i }); };
+      }
+    }
+    return v;
+  }
+  carVals() {
+    const n = 8, i = this.state?.car || 0;
+    return { carX: `calc(${-i} * (100vw - 2 * clamp(24px, 2.4vw, 48px) + 5px))`, carPrev: () => this.setState({ car: (i - 1 + n) % n }), carNext: () => this.setState({ car: (i + 1) % n }) };
+  }
+  renderVals() {
+    return { headerClass: (this.state?.scrolled ? 'is-scrolled' : ''), pageClass: '', navCls: (!this.state?.scrolled || this.state?.navHover || this.state?.mega || this.state?.menuOpen) ? 'show-nav' : '', navHover: () => { if (!this.state?.navHover) this.setState({ navHover: true }); }, navLeave: () => { this.megaVals().closeMega(); if (this.state?.navHover) this.setState({ navHover: false }); }, footerP: String(this.state?.fp || 0), ...this.themeVals(), ...this.menuVals(), ...this.logoVals(), ...this.megaVals(), ...this.carVals() };
+  }
+}
+
+DC.mount(Component, document.getElementById('tpl'), document.getElementById('app'), {});
+</script>
+</body>
+</html>

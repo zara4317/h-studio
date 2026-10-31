@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Услуги — H-studio</title>
+<meta name="description" content="H-studio — архитектура и дизайн интерьеров в Москве: квартиры, частные дома, коммерческие пространства. От идеи до авторского надзора.">
+<link rel="stylesheet" href="css/site.css">
+<style>body{margin:0}</style>
+</head>
+<body>
+<div id="app"></div>
+<template id="tpl">
+
+<div class="page {{pageClass}}" data-theme="{{themeAttr}}">
+
+  <header class="header is-light {{headerClass}} {{menuClass}} {{megaCls}} {{navCls}}" onMouseEnter="{{navHover}}" onMouseLeave="{{navLeave}}">
+    <div class="wrap">
+      <a href="index.html" class="logo" aria-label="H-studio — на главную"><sc-if value="{{logoBeam}}" hint-placeholder-val="{{ false }}"><svg class="mark" viewBox="0 0 100 100" fill="currentColor" aria-hidden="true"><rect x="8" y="10" width="84" height="10"/><rect x="8" y="80" width="84" height="10"/><rect x="45" y="20" width="10" height="60"/></svg></sc-if><sc-if value="{{logoDots}}" hint-placeholder-val="{{ true }}"><svg class="mark" viewBox="0 0 100 100" fill="currentColor" aria-hidden="true"><circle cx="22" cy="10" r="7"/><circle cx="22" cy="50" r="7"/><circle cx="22" cy="90" r="7"/><circle cx="78" cy="10" r="7"/><circle cx="78" cy="50" r="7"/><circle cx="78" cy="90" r="7"/><circle cx="50" cy="50" r="7"/></svg></sc-if><span class="word">studio</span></a>
+      <nav class="nav-links" aria-label="Основное меню"><div class="nav-item {{megaProjectsCls}}" onMouseEnter="{{openProjects}}"><a href="projects.html" class="has-mega" onClick="{{toggleProjects}}">Проекты<svg class="chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></a></div><div class="nav-item {{megaServicesCls}}" onMouseEnter="{{openServices}}"><a href="services.html" class="has-mega is-active" onClick="{{toggleServices}}">Услуги<svg class="chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></a></div><div class="nav-item {{megaAboutCls}}" onMouseEnter="{{openAbout}}"><a href="about.html" class="has-mega" onClick="{{toggleAbout}}">Обо мне<svg class="chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></a></div><div class="nav-item" onMouseEnter="{{closeMega}}" onMouseLeave="{{keepMega}}"><a href="contacts.html" class="">Контакты</a></div><span class="nav-sep" aria-hidden="true"></span><a href="contacts.html" class="nav-cta">Оставить заявку</a></nav>
+      <div style="display: flex; align-items: center; gap: 12px">
+        <button type="button" class="theme-btn" onClick="{{toggleTheme}}" aria-label="Переключить тему" title="Тема: {{themeLabel}}">
+          <sc-if value="{{isDark}}" hint-placeholder-val="{{ false }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg></sc-if>
+          <sc-if value="{{isLight}}" hint-placeholder-val="{{ true }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path></svg></sc-if>
+        </button>
+        <button class="burger btn btn-outline btn-small" type="button" aria-label="{{menuLabel}}" aria-expanded="{{menuOpen}}" onClick="{{toggleMenu}}" style="padding: 0 12px">
+          <sc-if value="{{menuClosed}}" hint-placeholder-val="{{ true }}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 8h16M4 16h16"></path></svg></sc-if>
+          <sc-if value="{{menuOpen}}" hint-placeholder-val="{{ false }}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></sc-if>
+        </button>
+      </div>
+    </div><div class="mega-wrap {{megaWrapCls}}" onMouseEnter="{{keepMega}}"><div class="mega-clip"><div class="mega"><div class="mega-inner {{panelProjectsCls}}"><div class="mega-list"><a href="projects.html" class="{{subProjects0Cls}}" onMouseEnter="{{hoverProjects0}}">Все проекты<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a><a href="projects.html" class="{{subProjects1Cls}}" onMouseEnter="{{hoverProjects1}}">Квартиры<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a><a href="projects.html" class="{{subProjects2Cls}}" onMouseEnter="{{hoverProjects2}}">Частные дома<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a><a href="projects.html" class="{{subProjects3Cls}}" onMouseEnter="{{hoverProjects3}}">Коммерческие<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a><a href="project-office.html" class="{{subProjects4Cls}}" onMouseEnter="{{hoverProjects4}}">Новый проект<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div><div class="mega-pics"><a href="projects.html" class="mega-pic {{picProjects0Cls}}"><img src="img/acb4cf43eb6042edfe72c9bb55ae6608.jpg" alt=""><span>Квартира на Фрунзенской · 96 м²</span></a><a href="projects.html" class="mega-pic {{picProjects1Cls}}"><img src="img/f522ee8e9df284c6d55ecaca32072b09.jpg" alt=""><span>Квартира в Хамовниках · 72 м²</span></a><a href="projects.html" class="mega-pic {{picProjects2Cls}}"><img src="img/1f4186f60d4357378cbd1f9b1d6abe33.jpg" alt=""><span>Дом в Истре · 240 м²</span></a><a href="projects.html" class="mega-pic {{picProjects3Cls}}"><img src="img/0defa95ef70b6461b853b007f49bfb11.jpg" alt=""><span>Кафе на Покровке · 120 м²</span></a><a href="project-office.html" class="mega-pic {{picProjects4Cls}}"><img src="img/fba5eb058480203211ebb79eac2aa380.jpg" alt=""><span>Офис бюро на Патриарших · 180 м²</span></a></div></div><div class="mega-inner {{panelServicesCls}}"><div class="mega-list"><a href="services.html" class="{{subServices0Cls}}" onMouseEnter="{{hoverServices0}}">Дизайн-проект интерьера<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a><a href="services.html" class="{{subServices1Cls}}" onMouseEnter="{{hoverServices1}}">Архитектурное проектирование<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a><a href="services.html" class="{{subServices2Cls}}" onMouseEnter="{{hoverServices2}}">Авторский надзор<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a><a href="services.html" class="{{subServices3Cls}}" onMouseEnter="{{hoverServices3}}">Консультация<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a><a href="services.html" class="{{subServices4Cls}}" onMouseEnter="{{hoverServices4}}">Дизайн мебели<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div><div class="mega-pics"><a href="services.html" class="mega-pic {{picServices0Cls}}"><img src="img/f1d3cd6f0e1a965a65100eb24eb6c0c7.jpg" alt=""><span>Дизайн-проект интерьера</span></a><a href="services.html" class="mega-pic {{picServices1Cls}}"><img src="img/97d21a316151250e594b857ffbbe83d2.jpg" alt=""><span>Частный дом</span></a><a href="services.html" class="mega-pic {{picServices2Cls}}"><img src="img/e9b3207f6ac82ff24410cbb01c7da66d.jpg" alt=""><span>Авторский надзор на объекте</span></a><a href="services.html" class="mega-pic {{picServices3Cls}}"><img src="img/223c4c9a2c4d68f10972a30bb7f9488d.jpg" alt=""><span>Консультация по планировке</span></a><a href="services.html" class="mega-pic {{picServices4Cls}}"><img src="img/0010e7a9c66edbe21b821bbaaf9294e8.jpg" alt=""><span>Мебель по индивидуальным чертежам</span></a></div></div><div class="mega-inner {{panelAboutCls}}"><div class="mega-list"><a href="about.html" class="{{subAbout0Cls}}" onMouseEnter="{{hoverAbout0}}">Подход<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a><a href="about.html" class="{{subAbout1Cls}}" onMouseEnter="{{hoverAbout1}}">История<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a><a href="about.html" class="{{subAbout2Cls}}" onMouseEnter="{{hoverAbout2}}">Образование и награды<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a><a href="about.html" class="{{subAbout3Cls}}" onMouseEnter="{{hoverAbout3}}">Преподавание<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div><div class="mega-pics"><a href="about.html" class="mega-pic {{picAbout0Cls}}"><img src="img/841e76d8d4e2fd0f8ddf8acece6b9e04.jpg" alt=""><span>Офис бюро на Патриарших</span></a><a href="about.html" class="mega-pic {{picAbout1Cls}}"><img src="img/3b1b19ead3b20eabcf2f89fa54489767.jpg" alt=""><span>H-studio · архитектор</span></a><a href="about.html" class="mega-pic {{picAbout2Cls}}"><img src="img/af7ae81baa624015456ad97bf30e55d9.jpg" alt=""><span>МАРХИ · награда мастерской Тотана Кузембаева</span></a><a href="about.html" class="mega-pic {{picAbout3Cls}}"><img src="img/f1cb0d49230f79aadd6f845e3704599e.jpg" alt=""><span>Курсы подготовки в МАРХИ</span></a></div></div></div></div></div>
+  </header>
+  <sc-if value="{{menuOpen}}" hint-placeholder-val="{{ false }}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></sc-if>
+
+  <div class="site-main">
+
+    <section class="wrap" style="padding-top: 160px; padding-bottom: 48px">
+      <p class="eyebrow">Услуги</p>
+      <div class="section-head" style="margin-bottom: 0">
+        <h1 class="h2 display" style="font-size: clamp(40px,6vw,96px)">Что я делаю</h1>
+        <p class="lead" style="max-width: 460px">Пять услуг, которые можно брать по отдельности или как один путь — от первой встречи до готового объекта. Цены ниже — ориентир; точную стоимость называю после знакомства с объектом.</p>
+      </div>
+    </section>
+    <div class="wrap"><hr class="rule"></div>
+    
+    <section class="wrap svc" id="s01">
+      <div class="grid-12">
+        <div class="col-3"><span class="num">01</span><h2 class="h3 display" style="margin-top: 12px">Дизайн-проект интерьера</h2><p class="muted" style="margin: 10px 0 0; font-size: 14px">Квартиры, дома, коммерческие пространства</p></div>
+        <div class="col-5"><p class="lead">Для тех, кто хочет получить продуманное пространство целиком — от планировки до последнего выключателя — и строить по понятным чертежам.</p><ul class="inc"><li>Обмеры и анализ исходного объекта</li><li>Два–три варианта планировки</li><li>Концепция: стиль, материалы, свет, мебель</li><li>3D-визуализации всех помещений</li><li>Полный комплект рабочих чертежей</li><li>Ведомости отделки, мебели и оборудования</li></ul></div>
+        <div class="col-4"><div class="facts-sm"><div><small>Результат</small><b>Альбом чертежей и визуализаций, по которому строители и поставщики работают без вопросов</b></div><div><small>Сроки</small><b>2–3 месяца для квартиры, 3–5 для дома</b></div><div><small>Стоимость</small><b>от 4 500 ₽/м²</b></div></div><a href="contacts.html" class="btn btn-dark" style="margin-top: 28px">Обсудить <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div>
+      </div>
+    </section>
+    <section class="wrap svc" id="s02">
+      <div class="grid-12">
+        <div class="col-3"><span class="num">02</span><h2 class="h3 display" style="margin-top: 12px">Архитектурное проектирование</h2><p class="muted" style="margin: 10px 0 0; font-size: 14px">Частные дома и небольшие здания</p></div>
+        <div class="col-5"><p class="lead">Для участка, на котором нужно построить дом: от первого эскиза до архитектурного раздела, готового к согласованию и стройке.</p><ul class="inc"><li>Анализ участка, инсоляции и видов</li><li>Эскизный проект: объём, планировки, фасады</li><li>Архитектурный раздел проекта (АР)</li><li>Подбор конструктивной схемы вместе с инженером</li><li>Фасадные решения и материалы</li><li>Сопровождение на этапе согласований</li></ul></div>
+        <div class="col-4"><div class="facts-sm"><div><small>Результат</small><b>Эскизный проект и раздел АР, по которым можно получить разрешение и начать строить</b></div><div><small>Сроки</small><b>3–6 месяцев в зависимости от объёма</b></div><div><small>Стоимость</small><b>от 3 000 ₽/м²</b></div></div><a href="contacts.html" class="btn btn-dark" style="margin-top: 28px">Обсудить <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div>
+      </div>
+    </section>
+    <section class="wrap svc" id="s03">
+      <div class="grid-12">
+        <div class="col-3"><span class="num">03</span><h2 class="h3 display" style="margin-top: 12px">Авторский надзор</h2><p class="muted" style="margin: 10px 0 0; font-size: 14px">Контроль стройки по проекту</p></div>
+        <div class="col-5"><p class="lead">Для тех, у кого проект уже есть и нужно, чтобы построили именно его — без упрощений и замен «на похожее».</p><ul class="inc"><li>Выезды на объект по графику (обычно раз в неделю)</li><li>Проверка работ на соответствие проекту</li><li>Решение вопросов строителей на месте</li><li>Контроль поставок материалов и мебели</li><li>Корректировки чертежей по факту</li><li>Отчёт после каждого визита</li></ul></div>
+        <div class="col-4"><div class="facts-sm"><div><small>Результат</small><b>Объект, который совпал с визуализацией</b></div><div><small>Сроки</small><b>На весь период стройки</b></div><div><small>Стоимость</small><b>от 40 000 ₽/мес</b></div></div><a href="contacts.html" class="btn btn-dark" style="margin-top: 28px">Обсудить <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div>
+      </div>
+    </section>
+    <section class="wrap svc" id="s04">
+      <div class="grid-12">
+        <div class="col-3"><span class="num">04</span><h2 class="h3 display" style="margin-top: 12px">Дизайн мебели</h2><p class="muted" style="margin: 10px 0 0; font-size: 14px">Предметы по индивидуальным чертежам</p></div>
+        <div class="col-5"><p class="lead">Для места, куда не встаёт ничего готового, или для вещи, которой нужно быть особенной: кухня, стеллаж, стол, встроенная система хранения.</p><ul class="inc"><li>Эскиз и 3D-модель предмета</li><li>Чертежи для производства</li><li>Подбор материалов и фурнитуры</li><li>Общение с производителем</li><li>Контроль образцов и приёмка</li></ul></div>
+        <div class="col-4"><div class="facts-sm"><div><small>Результат</small><b>Предмет, сделанный точно под ваше пространство</b></div><div><small>Сроки</small><b>3–6 недель на предмет</b></div><div><small>Стоимость</small><b>от 25 000 ₽/предмет</b></div></div><a href="contacts.html" class="btn btn-dark" style="margin-top: 28px">Обсудить <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div>
+      </div>
+    </section>
+    <section class="wrap svc" id="s05">
+      <div class="grid-12">
+        <div class="col-3"><span class="num">05</span><h2 class="h3 display" style="margin-top: 12px">Консультация</h2><p class="muted" style="margin: 10px 0 0; font-size: 14px">Одна встреча — ясный план</p></div>
+        <div class="col-5"><p class="lead">Для тех, кто только начинает и хочет понять, что делать с планировкой, с чего начать ремонт или стоит ли покупать именно эту квартиру.</p><ul class="inc"><li>Разбор вашей планировки или проекта</li><li>Ответы на вопросы по материалам и бюджету</li><li>Оценка реалистичности сроков</li><li>План дальнейших шагов</li></ul></div>
+        <div class="col-4"><div class="facts-sm"><div><small>Результат</small><b>Письменные рекомендации после встречи</b></div><div><small>Сроки</small><b>1,5–2 часа, онлайн или на объекте</b></div><div><small>Стоимость</small><b>7 000 ₽</b></div></div><a href="contacts.html" class="btn btn-dark" style="margin-top: 28px">Обсудить <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div>
+      </div>
+    </section>
+    <section class="wrap section" style="padding-top: 48px">
+      <div class="grid-12">
+        <div class="col-4"><p class="eyebrow">Вопросы</p><h2 class="h3 display">Что спрашивают чаще всего</h2></div>
+        <div class="col-8">
+          <div class="faq">
+            <div><b>С чего начать, если ремонт только в планах?</b><p>С консультации: за одну встречу разберём планировку, бюджет и сроки, и вы поймёте, нужен ли полный дизайн-проект или хватит точечных решений.</p></div>
+            <div><b>Можно ли заказать только планировку?</b><p>Да. Планировочное решение — отдельный этап, его можно взять без концепции и чертежей; позже его легко развить в полный проект.</p></div>
+            <div><b>Работаете ли вы с другими городами?</b><p>Проектирование — да, полностью удалённо. Авторский надзор веду в Москве и Подмосковье, в других городах — по договорённости.</p></div>
+            <div><b>Как считается стоимость?</b><p>По площади и составу работ. После первой встречи присылаю смету с фиксированной суммой за каждый этап — она не меняется в процессе.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="band">
+      <div class="wrap grid-12" style="align-items: end">
+        <div class="col-8"><p class="eyebrow">Заявка</p><p class="statement display">Не уверены, какая услуга нужна? Опишите объект — подскажу, с чего начать.</p></div>
+        <div class="col-4" style="display: flex; justify-content: flex-end"><a href="contacts.html" class="btn btn-light" style="min-height: 60px; padding: 0 32px">Оставить заявку <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="footer-slot" style="--fp: {{footerP}}"><div class="footer-anchor"><footer class="footer" style="--fp: {{footerP}}"><div class="footer-bg" aria-hidden="true"><img src="img/1f4186f60d4357378cbd1f9b1d6abe33.jpg" alt=""></div>
+    <div class="footer-inner"><div class="wrap">
+      <div class="footer-top">
+        <div class="wordmark"><div class="wm-row"><sc-if value="{{logoBeam}}" hint-placeholder-val="{{ false }}"><svg class="mark" viewBox="0 0 100 100" fill="currentColor" aria-hidden="true"><rect x="8" y="10" width="84" height="10"/><rect x="8" y="80" width="84" height="10"/><rect x="45" y="20" width="10" height="60"/></svg></sc-if><sc-if value="{{logoDots}}" hint-placeholder-val="{{ true }}"><svg class="mark" viewBox="0 0 100 100" fill="currentColor" aria-hidden="true"><circle cx="22" cy="10" r="7"/><circle cx="22" cy="50" r="7"/><circle cx="22" cy="90" r="7"/><circle cx="78" cy="10" r="7"/><circle cx="78" cy="50" r="7"/><circle cx="78" cy="90" r="7"/><circle cx="50" cy="50" r="7"/></svg></sc-if><span class="word">studio</span></div><svg class="tag" width="100%" height="14" aria-label="architecture &amp; interiors" role="img"><text x="0" y="11" textLength="100%" lengthAdjust="spacing" font-family="Manrope, sans-serif" font-weight="300" font-size="11" fill="currentColor">ARCHITECTURE &amp; INTERIORS</text></svg></div>
+        <div class="footer-cols">
+          <div class="footer-links">
+            <small>Навигация</small>
+            <a href="projects.html">Проекты</a>
+            <a href="services.html">Услуги</a>
+            <a href="about.html">Обо мне</a>
+            <a href="contacts.html">Контакты</a>
+          </div>
+          <div class="footer-links">
+            <small>Связь</small>
+            <a href="tel:+79991234567">+7 (999) 123-45-67</a>
+            <a href="mailto:h.studio.arch@mail.ru">h.studio.arch@mail.ru</a>
+            <a href="#top">Telegram</a>
+            <a href="#top">Instagram</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 H-studio. Архитектура и дизайн интерьеров</span>
+        <a href="#top">Политика конфиденциальности</a>
+      </div>
+    </div>
+  </div></footer></div></div>
+
+</div>
+</template>
+<script src="js/idiomorph.min.js"></script>
+<script src="js/dc-runtime.js"></script>
+<script>
+
+class Component extends DCLogic {
+  componentDidMount() {
+    this.mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+    this.onMq = () => this.forceUpdate();
+    if (this.mq && this.mq.addEventListener) this.mq.addEventListener('change', this.onMq);
+    this.lastY = 0;
+    this.onScroll = () => {
+      const y = window.scrollY || document.documentElement.scrollTop || 0;
+      const scrolled = y > 40;
+      const hidden = false;
+      if (scrolled && this.state?.navHover && !this.state?.mega) this.setState({ navHover: false });
+      this.lastY = y;
+      const doc = document.documentElement;
+      const fh = 356;
+      const slot = document.querySelector('.footer-slot');
+      const top = slot ? slot.getBoundingClientRect().top + y : doc.scrollHeight;
+      let fp = (y + window.innerHeight - top - 16) / fh;
+      fp = Math.round(Math.max(0, Math.min(1, fp)) * 25) / 25;
+      if (doc.scrollHeight <= window.innerHeight + 2) fp = 1;
+      if (scrolled !== this.state?.scrolled || hidden !== this.state?.hidden || fp !== (this.state?.fp || 0)) this.setState({ scrolled, hidden, fp });
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    this.onScroll();
+    setTimeout(this.onScroll, 300);
+    window.addEventListener('resize', this.onScroll);
+  }
+  componentWillUnmount() {
+    if (this.mq && this.mq.removeEventListener) this.mq.removeEventListener('change', this.onMq);
+    window.removeEventListener('scroll', this.onScroll);
+  }
+  logoVals() {
+    const v = this.props.logo ?? 'точки';
+    return { logoBeam: v !== 'точки', logoDots: v === 'точки' };
+  }
+  menuVals() {
+    const open = !!this.state?.menuOpen;
+    return {
+      menuOpen: open, menuClosed: !open,
+      menuClass: open ? 'is-open' : '',
+      menuLabel: open ? 'Закрыть меню' : 'Открыть меню',
+      toggleMenu: () => this.setState({ menuOpen: !open }),
+      closeMenu: () => this.setState({ menuOpen: false })
+    };
+  }
+  themeVals() {
+    const pref = this.state?.theme || 'auto';
+    const sysDark = !!(this.mq && this.mq.matches);
+    const isDark = pref === 'dark' || (pref === 'auto' && sysDark);
+    return {
+      themeAttr: pref === 'auto' ? '' : pref,
+      isDark, isLight: !isDark,
+      themeLabel: pref === 'auto' ? 'как на устройстве' : (pref === 'dark' ? 'тёмная' : 'светлая'),
+      toggleTheme: () => this.setState({ theme: isDark ? 'light' : 'dark' })
+    };
+  }
+  megaVals() {
+    const m = this.state?.mega || null;
+    const setMega = (k) => {
+      clearTimeout(this.megaT);
+      const delay = k ? (this.state?.mega ? 0 : 60) : 160;
+      this.megaT = setTimeout(() => { if ((this.state?.mega || null) !== k) this.setState({ mega: k, lastMega: k || this.state?.lastMega || null, sub: 0 }); }, delay);
+    };
+    const shown = m || this.state?.lastMega || null;
+    const sub = this.state?.sub || 0;
+    const v = { megaOpen: !!m, megaCls: m ? 'is-mega' : '', megaWrapCls: m ? 'is-open' : '', closeMega: () => setMega(null), keepMega: () => clearTimeout(this.megaT) };
+    for (const k of ['Projects','Services','About']) {
+      v['mega'+k] = m === k;
+      v['panel'+k+'Cls'] = shown === k ? 'is-on' : '';
+      v['mega'+k+'Cls'] = m === k ? 'is-open' : '';
+      v['open'+k] = () => setMega(k);
+      v['toggle'+k] = (e) => { if (window.matchMedia && window.matchMedia('(hover: none)').matches) { e.preventDefault(); clearTimeout(this.megaT); this.setState({ mega: m === k ? null : k, lastMega: k, sub: 0 }); } };
+      for (let i = 0; i < 5; i++) {
+        v['sub'+k+i+'Cls'] = (shown === k && sub === i) ? 'is-hot' : '';
+        v['pic'+k+i+'Cls'] = (shown === k && sub === i) ? 'is-on' : '';
+        v['hover'+k+i] = () => { if (this.state?.sub !== i) this.setState({ sub: i }); };
+      }
+    }
+    return v;
+  }
+  renderVals() {
+    return { headerClass: (this.state?.scrolled ? 'is-scrolled' : ''), pageClass: '', navCls: (!this.state?.scrolled || this.state?.navHover || this.state?.mega || this.state?.menuOpen) ? 'show-nav' : '', navHover: () => { if (!this.state?.navHover) this.setState({ navHover: true }); }, navLeave: () => { this.megaVals().closeMega(); if (this.state?.navHover) this.setState({ navHover: false }); }, footerP: String(this.state?.fp || 0), ...this.themeVals(), ...this.menuVals(), ...this.logoVals(), ...this.megaVals() };
+  }
+}
+
+DC.mount(Component, document.getElementById('tpl'), document.getElementById('app'), {});
+</script>
+</body>
+</html>
