@@ -1,30 +1,13 @@
 (function () {
   var URL = 'https://script.google.com/macros/s/AKfycbyViB3NY6cYjPmlAGMczb6ptRafPTf1U-_gcS8o0_0efh7NJpEaoUxUOXsEa5LQt6h30Q/exec';
 
-  function css() {
-    if (document.getElementById('hs-modal-css')) return;
-    var s = document.createElement('style');
-    s.id = 'hs-modal-css';
-    s.textContent =
-      '.hs-modal{position:fixed;inset:0;z-index:100000;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.45);opacity:0;transition:opacity .25s ease}' +
-      '.hs-modal.is-open{opacity:1}' +
-      '.hs-modal__box{position:relative;width:100%;max-width:520px;max-height:calc(100dvh - 32px);overflow:auto;box-sizing:border-box;padding:48px 40px 40px;border-radius:3px;font-family:Manrope,sans-serif;transform:translateY(12px);transition:transform .25s ease}' +
-      '.hs-modal.is-open .hs-modal__box{transform:none}' +
-      '.hs-modal__icon{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:28px;border:1px solid currentColor}' +
-      '.hs-modal__title{font-family:Unbounded,sans-serif;font-weight:300;font-size:28px;line-height:1.2;margin:0 0 16px}' +
-      '.hs-modal__text{font-size:17px;line-height:1.6;margin:0 0 32px;opacity:.75}' +
-      '.hs-modal__close{position:absolute;top:12px;right:12px;width:44px;height:44px;border:0;background:none;color:inherit;cursor:pointer;font-size:28px;line-height:1}' +
-      '.hs-modal .btn{width:auto}' +
-      '@media (max-width:560px){.hs-modal__box{padding:44px 24px 28px}.hs-modal__title{font-size:22px}.hs-modal__text{font-size:15px}.hs-modal .btn{width:100%}}';
-    document.head.appendChild(s);
-  }
-
   function modal(ok) {
-    css();
     var page = document.querySelector('.page') || document.body;
     var cs = getComputedStyle(page);
     var bg = cs.getPropertyValue('--bg').trim() || '#fff';
     var fg = cs.getPropertyValue('--fg').trim() || '#111';
+    var ac = cs.getPropertyValue('--accent').trim() || fg;
+    var acf = cs.getPropertyValue('--accent-fg').trim() || bg;
     var old = document.querySelector('.hs-modal');
     if (old) old.remove();
     var m = document.createElement('div');
@@ -44,7 +27,7 @@
       '<div class="hs-modal__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">' + icon + '</svg></div>' +
       '<h3 class="hs-modal__title">' + title + '</h3>' +
       '<p class="hs-modal__text">' + text + '</p>' +
-      '<button type="button" class="btn btn-dark hs-modal__ok" style="background:' + fg + ';color:' + bg + ';border-color:' + fg + '">Хорошо</button>' +
+      '<button type="button" class="btn btn-dark hs-modal__ok" style="background:' + ac + ';color:' + acf + ';border-color:' + ac + '">Хорошо</button>' +
       '</div>';
     function close() {
       m.classList.remove('is-open');
