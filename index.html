@@ -4,6 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Главная — H-studio</title>
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
 <meta name="description" content="H-studio — архитектура и дизайн интерьеров в Москве: квартиры, частные дома, коммерческие пространства. От идеи до авторского надзора.">
 <link rel="stylesheet" href="css/site.css">
 <style>body{margin:0}</style>
@@ -128,6 +132,15 @@
       </div>
     </section>
 
+    <section class="zmod qmod" id="podbor">
+      <div class="wrap heading-side">
+        <p class="tag">Подбор стиля</p>
+        <h2 class="h1 display">Соберите свой интерьер</h2>
+        <p class="desc">Семь коротких вопросов — около двух минут. В конце покажу, какой стиль вам ближе, а я получу ваш бриф и приду на первую встречу уже с идеями.</p>
+      </div>
+      <div class="wrap"><div id="quiz" class="quiz" data-keep></div></div>
+    </section>
+
     <section class="zmod rt2 rt2-left">
       <div class="rt2-card">
         <div class="rt2-bg"><img src="img/97d21a316151250e594b857ffbbe83d2.jpg" alt=""></div>
@@ -176,6 +189,7 @@
 <script src="js/idiomorph.min.js"></script>
 <script src="js/dc-runtime.js"></script>
 <script src="js/palette.js"></script>
+<script src="js/quiz.js"></script>
 <script>
 
 class Component extends DCLogic {
