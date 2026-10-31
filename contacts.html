@@ -9,7 +9,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
 <meta name="description" content="H-studio — архитектура и дизайн интерьеров в Москве: квартиры, частные дома, коммерческие пространства. От идеи до авторского надзора.">
-<link rel="stylesheet" href="css/site.css?v=20261101">
+<link rel="stylesheet" href="css/site.css?v=20261101b">
 <style>body{margin:0}</style>
 </head>
 <body>
@@ -216,24 +216,24 @@ class Component extends DCLogic {
     const setMega = (k) => {
       clearTimeout(this.megaT);
       const delay = k ? (this.state?.mega ? 0 : 60) : 160;
-      this.megaT = setTimeout(() => { if ((this.state?.mega || null) !== k) this.setState({ mega: k, lastMega: k || this.state?.lastMega || null, sub: 0 }); }, delay);
+      this.megaT = setTimeout(() => { if ((this.state?.mega || null) !== k) this.setState({ mega: k, lastMega: k || this.state?.lastMega || null, sub: -1 }); }, delay);
     };
     const shown = m || this.state?.lastMega || null;
-    const sub = this.state?.sub || 0;
+    const sub = this.state?.sub ?? -1;
     const v = { megaOpen: !!m, megaCls: m ? 'is-mega' : '', megaWrapCls: m ? 'is-open' : '', closeMega: () => setMega(null), keepMega: () => clearTimeout(this.megaT) };
     for (const k of ['Projects','Services','About']) {
       v['mega'+k] = m === k;
       v['panel'+k+'Cls'] = shown === k ? 'is-on' : '';
       v['mega'+k+'Cls'] = m === k ? 'is-open' : '';
       v['open'+k] = () => setMega(k);
-      v['toggle'+k] = (e) => { if (window.matchMedia && window.matchMedia('(hover: none)').matches) { e.preventDefault(); clearTimeout(this.megaT); this.setState({ mega: m === k ? null : k, lastMega: k, sub: 0 }); } };
+      v['toggle'+k] = (e) => { if (window.matchMedia && window.matchMedia('(hover: none)').matches) { e.preventDefault(); clearTimeout(this.megaT); this.setState({ mega: m === k ? null : k, lastMega: k, sub: -1 }); } };
       for (let i = 0; i < 6; i++) {
         v['sub'+k+i+'Cls'] = (shown === k && sub === i) ? 'is-hot' : '';
-        v['pic'+k+i+'Cls'] = (shown === k && sub === i) ? 'is-on' : '';
+        v['pic'+k+i+'Cls'] = (shown === k && Math.max(sub, 0) === i) ? 'is-on' : '';
         v['hover'+k+i] = () => { if (this.state?.sub !== i) this.setState({ sub: i }); };
       }
     }
-    v.svcWideCls = (shown === 'Services' && sub >= 3) ? 'is-wide' : '';
+    v.svcWideCls = (shown === 'Services' && (sub < 0 || sub >= 3)) ? 'is-wide' : '';
     return v;
   }
   renderVals() {
