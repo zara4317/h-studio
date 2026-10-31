@@ -420,7 +420,9 @@ a{color:inherit}a:hover{color:inherit}
 .heading-side .tag{grid-column:1}
 .heading-side .h1{grid-column:2;grid-row:1;margin-bottom:24px}
 .heading-side .desc{grid-column:2;margin-top:0;max-width:none}
-.fcar{position:relative;overflow:hidden}
+.fcar{position:relative;overflow:hidden;touch-action:pan-y;overscroll-behavior-x:contain;-webkit-user-select:none;user-select:none}
+.fcar:focus{outline:none}
+.fcar:focus-visible{outline:2px solid var(--fg);outline-offset:4px}
 .fcar-track{display:flex;gap:5px;padding-left:clamp(24px,2.4vw,48px);width:max-content;transition:transform .7s cubic-bezier(.33,0,.2,1);will-change:transform}
 .fcar-item{flex:0 0 calc(100vw - 2 * clamp(24px,2.4vw,48px));max-width:calc(100vw - 2 * clamp(24px,2.4vw,48px))}
 .fcard{display:block;position:relative;aspect-ratio:16/8.4;min-height:420px;border-radius:4px;overflow:hidden;text-decoration:none;color:var(--fg)}
