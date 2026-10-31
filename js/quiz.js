@@ -33,7 +33,7 @@
   var CONTACT = ['Звонок', 'Telegram', 'WhatsApp'];
   var TOTAL = 7;
 
-  var s = { step: 1, object: '', area: '', styles: [], materials: [], palette: '', needs: [], budget: '', when: '', name: '', phone: '', contact: 'Звонок', note: '', sending: false, done: false, error: false };
+  var s = { step: 1, object: '', area: '', styles: [], materials: [], palette: '', needs: [], budget: '', when: '', name: '', phone: '', phoneNat: '', phoneCountry: 'RU', phoneValid: false, contact: 'Звонок', note: '', sending: false, done: false, error: false };
 
   function esc(v) { return String(v).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function on(list, v) { return list.indexOf(v) > -1; }
@@ -53,7 +53,7 @@
     if (s.step === 4) return !!s.palette;
     if (s.step === 5) return true;
     if (s.step === 6) return !!s.budget && !!s.when;
-    if (s.step === 7) return s.name.trim() && s.phone.replace(/\D/g, '').length >= 10;
+    if (s.step === 7) return s.name.trim() && (window.HSPhone ? s.phoneValid : s.phone.replace(/\D/g, '').length >= 10);
     return true;
   }
 
@@ -91,7 +91,7 @@
       '<p class="q-sub">Когда планируете начать</p>' + tiles('when', WHEN, s.when);
     return head('Куда прислать идеи?', 'Покажу ваш стиль сразу, а я получу бриф и подготовлюсь к разговору.') +
       '<div class="row2"><div class="field"><label for="q-name">Имя</label><input id="q-name" data-in="name" type="text" autocomplete="name" placeholder="Как к вам обращаться" value="' + esc(s.name) + '"></div>' +
-      '<div class="field"><label for="q-phone">Телефон</label><input id="q-phone" data-in="phone" type="tel" autocomplete="tel" placeholder="+7" value="' + esc(s.phone) + '"></div></div>' +
+      '<div class="field"><label for="q-phone">Телефон</label>' + (window.HSPhone ? HSPhone.markup({ id: 'q-phone', country: s.phoneCountry, value: s.phoneNat }) : '<input id="q-phone" data-in="phone" type="tel" autocomplete="tel" placeholder="+7" value="' + esc(s.phone) + '">') + '</div></div>' +
       '<p class="q-sub">Как удобнее связаться</p>' + tiles('contact', CONTACT, s.contact) +
       '<div class="field q-field"><label for="q-note">Комментарий</label><textarea id="q-note" data-in="note" placeholder="Сроки, состав семьи, что точно не нравится">' + esc(s.note) + '</textarea></div>' +
       '<p class="hint">Отправляя форму, вы соглашаетесь с обработкой персональных данных. Данные нужны только для ответа на вашу заявку.</p>';
@@ -172,8 +172,17 @@
   }
 
   document.addEventListener('click', function (e) {
+    var go = e.target.closest && e.target.closest('[data-quiz-start]');
+    if (go) {
+      var card = go.closest('[data-quiz-card]');
+      if (card) card.classList.add('is-started');
+      render();
+      var y = (card || document.getElementById('quiz')).getBoundingClientRect().top + window.pageYOffset - 100;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+      return;
+    }
     var root = document.getElementById('quiz');
-    var go = e.target.closest && e.target.closest('[data-quiz-start]'); if (go) { var card = go.closest('[data-quiz-card]'); if (card) card.classList.add('is-started'); render(); var y = (card || root).getBoundingClientRect().top + window.pageYOffset - 100; window.scrollTo({ top: y, behavior: 'smooth' }); return; } if (!root || !root.contains(e.target)) return;
+    if (!root || !root.contains(e.target)) return;
     var o = e.target.closest('[data-g]');
     if (o) {
       var g = o.getAttribute('data-g'), v = o.getAttribute('data-v');
@@ -191,7 +200,7 @@
     else if (act === 'back') { s.step--; s.error = false; render(true); }
     else if (act === 'send' && ok() && !s.sending) send();
     else if (act === 'again') {
-      s = { step: 1, object: '', area: '', styles: [], materials: [], palette: '', needs: [], budget: '', when: '', name: s.name, phone: s.phone, contact: s.contact, note: '', sending: false, done: false, error: false };
+      s = { step: 1, object: '', area: '', styles: [], materials: [], palette: '', needs: [], budget: '', when: '', name: s.name, phone: s.phone, phoneNat: s.phoneNat, phoneCountry: s.phoneCountry, phoneValid: s.phoneValid, contact: s.contact, note: '', sending: false, done: false, error: false };
       render(true);
     }
   });
@@ -200,6 +209,16 @@
     var k = e.target.getAttribute && e.target.getAttribute('data-in');
     if (!k || !document.getElementById('quiz').contains(e.target)) return;
     s[k] = e.target.value;
+    refreshNav();
+  });
+
+  document.addEventListener('hs-tel', function (e) {
+    var root = document.getElementById('quiz');
+    if (!root || !root.contains(e.target)) return;
+    s.phone = e.detail.full;
+    s.phoneNat = e.detail.national;
+    s.phoneCountry = e.detail.country;
+    s.phoneValid = e.detail.valid;
     refreshNav();
   });
 
