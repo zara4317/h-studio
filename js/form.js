@@ -60,6 +60,92 @@
     requestAnimationFrame(function () { m.classList.add('is-open'); m.querySelector('.hs-modal__ok').focus(); });
   }
 
+  var MAX_FILES = 10;
+  var MAX_TOTAL = 20 * 1024 * 1024;
+  var files = [];
+
+  function size(b) {
+    if (b < 1024 * 1024) return Math.max(1, Math.round(b / 1024)) + ' КБ';
+    return (b / 1024 / 1024).toFixed(1).replace('.', ',') + ' МБ';
+  }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  function error(text) {
+    var drop = document.getElementById('f-drop');
+    if (!drop) return;
+    var old = drop.querySelector('.drop-err');
+    if (old) old.remove();
+    if (!text) return;
+    var p = document.createElement('p');
+    p.className = 'drop-err';
+    p.textContent = text;
+    drop.appendChild(p);
+  }
+
+  function render() {
+    var list = document.getElementById('f-list');
+    if (!list) return;
+    list.innerHTML = files.map(function (f, i) {
+      return '<li><span class="nm">' + esc(f.name) + '</span><span class="sz">' + size(f.size) + '</span><button type="button" data-rm="' + i + '" aria-label="Убрать файл ' + esc(f.name) + '">×</button></li>';
+    }).join('');
+  }
+
+  function add(list) {
+    var msg = '';
+    var total = files.reduce(function (s, f) { return s + f.size; }, 0);
+    Array.prototype.forEach.call(list, function (f) {
+      if (files.some(function (x) { return x.name === f.name && x.size === f.size; })) return;
+      if (files.length >= MAX_FILES) { msg = 'Можно прикрепить до ' + MAX_FILES + ' файлов. Остальные пришлите на почту h.studio.arch@mail.ru.'; return; }
+      if (total + f.size > MAX_TOTAL) { msg = 'Файл «' + f.name + '» не поместился: всего можно до 20 МБ. Большие файлы пришлите на почту h.studio.arch@mail.ru.'; return; }
+      files.push(f);
+      total += f.size;
+    });
+    error(msg);
+    render();
+  }
+
+  function read(f) {
+    return new Promise(function (ok, fail) {
+      var r = new FileReader();
+      r.onload = function () { ok({ name: f.name, type: f.type || 'application/octet-stream', data: String(r.result).split(',')[1] || '' }); };
+      r.onerror = fail;
+      r.readAsDataURL(f);
+    });
+  }
+
+  document.addEventListener('change', function (e) {
+    if (e.target.id !== 'f-files') return;
+    add(e.target.files);
+    e.target.value = '';
+  });
+
+  document.addEventListener('click', function (e) {
+    var rm = e.target.closest('[data-rm]');
+    if (!rm) return;
+    files.splice(+rm.getAttribute('data-rm'), 1);
+    error('');
+    render();
+  });
+
+  ['dragenter', 'dragover'].forEach(function (t) {
+    document.addEventListener(t, function (e) {
+      var drop = e.target.closest && e.target.closest('#f-drop');
+      if (!drop) return;
+      e.preventDefault();
+      drop.classList.add('is-over');
+    });
+  });
+  ['dragleave', 'drop'].forEach(function (t) {
+    document.addEventListener(t, function (e) {
+      var drop = e.target.closest && e.target.closest('#f-drop');
+      if (!drop) return;
+      if (t === 'dragleave' && drop.contains(e.relatedTarget)) return;
+      e.preventDefault();
+      drop.classList.remove('is-over');
+      if (t === 'drop' && e.dataTransfer && e.dataTransfer.files.length) add(e.dataTransfer.files);
+    });
+  });
+
   document.addEventListener('submit', function (e) {
     var form = e.target.closest && e.target.closest('form.form');
     if (!form) return;
@@ -69,10 +155,17 @@
     var data = new URLSearchParams(new FormData(form));
     btn.disabled = true;
     btn.style.opacity = '.5';
-    fetch(URL, { method: 'POST', mode: 'no-cors', body: data })
+    Promise.all(files.map(read))
+      .then(function (list) {
+        if (list.length) data.append('files', JSON.stringify(list));
+        return fetch(URL, { method: 'POST', mode: 'no-cors', body: data });
+      })
       .then(function () {
         form.querySelectorAll('input, textarea').forEach(function (el) { el.value = ''; });
         form.querySelectorAll('select').forEach(function (el) { el.selectedIndex = 0; });
+        files = [];
+        error('');
+        render();
         modal(true);
       })
       .catch(function () { modal(false); })

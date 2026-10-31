@@ -19,6 +19,7 @@
       <a href="index.html" class="logo" aria-label="H-studio — на главную"><sc-if value="{{logoBeam}}" hint-placeholder-val="{{ false }}"><svg class="mark" viewBox="0 0 100 100" fill="currentColor" aria-hidden="true"><rect x="8" y="10" width="84" height="10"/><rect x="8" y="80" width="84" height="10"/><rect x="45" y="20" width="10" height="60"/></svg></sc-if><sc-if value="{{logoDots}}" hint-placeholder-val="{{ true }}"><svg class="mark" viewBox="0 0 100 100" fill="currentColor" aria-hidden="true"><circle cx="22" cy="10" r="7"/><circle cx="22" cy="50" r="7"/><circle cx="22" cy="90" r="7"/><circle cx="78" cy="10" r="7"/><circle cx="78" cy="50" r="7"/><circle cx="78" cy="90" r="7"/><circle cx="50" cy="50" r="7"/></svg></sc-if><span class="word">studio</span></a>
       <nav class="nav-links" aria-label="Основное меню"><div class="nav-item {{megaProjectsCls}}" onMouseEnter="{{openProjects}}"><a href="projects.html" class="has-mega" onClick="{{toggleProjects}}">Проекты<svg class="chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></a></div><div class="nav-item {{megaServicesCls}}" onMouseEnter="{{openServices}}"><a href="services.html" class="has-mega" onClick="{{toggleServices}}">Услуги<svg class="chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></a></div><div class="nav-item {{megaAboutCls}}" onMouseEnter="{{openAbout}}"><a href="about.html" class="has-mega" onClick="{{toggleAbout}}">Обо мне<svg class="chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></a></div><div class="nav-item" onMouseEnter="{{closeMega}}" onMouseLeave="{{keepMega}}"><a href="contacts.html" class="is-active">Контакты</a></div><span class="nav-sep" aria-hidden="true"></span><a href="contacts.html" class="nav-cta">Оставить заявку</a></nav>
       <div style="display: flex; align-items: center; gap: 12px">
+        <button type="button" class="theme-btn pal-btn" aria-label="Цвет сайта" title="Цвет сайта"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.8 1.6-1.6 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-.9.7-1.6 1.6-1.6H16a5 5 0 0 0 5-5C21 6.4 17 3 12 3z"></path><circle cx="7.5" cy="11" r="1"></circle><circle cx="10.5" cy="7" r="1"></circle><circle cx="15" cy="7.5" r="1"></circle></svg></button>
         <button type="button" class="theme-btn" onClick="{{toggleTheme}}" aria-label="Переключить тему" title="Тема: {{themeLabel}}">
           <sc-if value="{{isDark}}" hint-placeholder-val="{{ false }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg></sc-if>
           <sc-if value="{{isLight}}" hint-placeholder-val="{{ true }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path></svg></sc-if>
@@ -86,6 +87,14 @@
               <select id="f-when" name="when"><option>В ближайший месяц</option><option>В течение 3 месяцев</option><option>Позже</option></select></div>
           </div>
           <div class="field"><label for="f-msg">Задача</label><textarea id="f-msg" name="message" placeholder="Несколько слов о задаче, сроках и пожеланиях"></textarea></div>
+          <div class="field"><span class="field-label">Чертежи и референсы</span>
+            <div class="drop" id="f-drop" data-keep>
+              <input id="f-files" class="drop-input" type="file" multiple accept=".pdf,.dwg,.dxf,.jpg,.jpeg,.png,.webp,.heic,.zip,.rar,.7z,.doc,.docx,.xls,.xlsx,.pptx,.skp,.rvt,.pln">
+              <label for="f-files" class="drop-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12.5l-8.6 8.6a5.5 5.5 0 0 1-7.8-7.8l9.2-9.2a3.7 3.7 0 0 1 5.2 5.2l-9.2 9.2a1.8 1.8 0 0 1-2.6-2.6l8.6-8.6"></path></svg><span>Прикрепить файлы</span></label>
+              <span class="drop-hint">или перетащите сюда · план, обмеры, фото, референсы · до 10 файлов, всего до 20 МБ</span>
+              <ul class="drop-list" id="f-list"></ul>
+            </div>
+          </div>
           <div style="display: flex; flex-direction: column; gap: 16px">
             <button type="submit" class="btn btn-dark" style="align-self: flex-start; min-height: 56px; padding: 0 32px">Отправить заявку <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
             <p class="hint">Отправляя форму, вы соглашаетесь с обработкой персональных данных. Данные нужны только для ответа на вашу заявку.</p>
@@ -129,6 +138,7 @@
 </template>
 <script src="js/idiomorph.min.js"></script>
 <script src="js/dc-runtime.js"></script>
+<script src="js/palette.js"></script>
 <script src="js/form.js"></script>
 <script>
 

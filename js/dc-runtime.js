@@ -100,7 +100,7 @@
     var frag = document.createElement('div');
     for (var i = 0; i < this._tpl.childNodes.length; i++) rn(this._tpl.childNodes[i], vals, frag);
     if (this._root.childNodes.length && window.Idiomorph) {
-      Idiomorph.morph(this._root, frag.childNodes, { morphStyle: 'innerHTML', ignoreActiveValue: true });
+      Idiomorph.morph(this._root, frag.childNodes, { morphStyle: 'innerHTML', ignoreActiveValue: true, callbacks: { beforeNodeMorphed: function (o) { return !(o.nodeType === 1 && o.hasAttribute('data-keep')); } } });
     } else {
       this._root.innerHTML = '';
       while (frag.firstChild) this._root.appendChild(frag.firstChild);
