@@ -172,6 +172,15 @@
   }
 
   document.addEventListener('click', function (e) {
+    var go = e.target.closest && e.target.closest('[data-quiz-start]');
+    if (go) {
+      var card = go.closest('[data-quiz-card]');
+      if (card) card.classList.add('is-started');
+      render();
+      var y = (card || document.getElementById('quiz')).getBoundingClientRect().top + window.pageYOffset - 100;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+      return;
+    }
     var root = document.getElementById('quiz');
     if (!root || !root.contains(e.target)) return;
     var o = e.target.closest('[data-g]');
