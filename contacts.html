@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Контакты и заявка — H-studio</title>
 <link rel="icon" href="favicon.ico" sizes="48x48">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -74,10 +74,10 @@
             <a href="#top" class="btn btn-outline btn-small">Instagram</a>
           </div>
         </div>
-        <form class="off-7 form" action="contacts.html">
+        <form class="off-7 form" action="contacts.html" data-keep>
           <div class="row2">
             <div class="field"><label for="f-name">Имя</label><input id="f-name" name="name" type="text" placeholder="Как к вам обращаться" autocomplete="name" required></div>
-            <div class="field"><label for="f-phone">Телефон</label><input id="f-phone" name="phone" type="tel" placeholder="+7" autocomplete="tel" required></div>
+            <div class="field"><label for="f-phone">Телефон</label><div class="tel" data-tel data-country="RU" data-keep><button type="button" class="tel-cc" aria-haspopup="listbox" aria-expanded="false" aria-label="Код страны: Россия, +7"><span class="tel-flag">🇷🇺</span><span class="tel-code">+7</span><svg class="tel-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></button><input id="f-phone" class="tel-input" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="900 000-00-00" required><input type="hidden" name="phone" value=""></div></div>
           </div>
           <div class="row2">
             <div class="field"><label for="f-type">Тип объекта</label>
@@ -143,6 +143,8 @@
 <script src="js/idiomorph.min.js"></script>
 <script src="js/dc-runtime.js"></script>
 <script src="js/palette.js"></script>
+<script src="js/libphonenumber.min.js"></script>
+<script src="js/phone.js"></script>
 <script src="js/form.js"></script>
 <script>
 

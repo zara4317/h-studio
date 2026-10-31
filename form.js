@@ -146,6 +146,7 @@
       .then(function () {
         form.querySelectorAll('input, textarea').forEach(function (el) { el.value = ''; });
         form.querySelectorAll('select').forEach(function (el) { el.selectedIndex = 0; });
+        form.querySelectorAll('[data-tel]').forEach(function (w) { w.classList.remove('was-blurred'); if (window.HSPhone) HSPhone.sync(w); });
         files = [];
         error('');
         render();
