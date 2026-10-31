@@ -1,15 +1,21 @@
 (function () {
   var P = [
-    { id: 'classic', name: 'Классика', code: 'Ч/Б', year: 'H-studio', sw: '#111111' },
-    { id: 'cloud', name: 'Cloud Dancer', code: '11-4201 TCX', year: '2026', sw: '#F0EEE9', bg: '#F0EEE9', glass: 'rgba(240,238,233,0.5)', ac: '#2E2B27', ac2: '#55504A', band: '#2E2B27', line: 'rgba(46,43,39,0.16)' },
-    { id: 'mocha', name: 'Mocha Mousse', code: '17-1230 TCX', year: '2025', sw: '#A47864', bg: '#F5EFEB', glass: 'rgba(245,239,235,0.5)', ac: '#A47864', ac2: '#8A6250', band: '#4A362C', line: 'rgba(164,120,100,0.28)' },
-    { id: 'peach', name: 'Peach Fuzz', code: '13-1023 TCX', year: '2024', sw: '#FFBE98', bg: '#FFF5EF', glass: 'rgba(255,245,239,0.5)', ac: '#C8734B', ac2: '#AE5F3A', band: '#5A3526', line: 'rgba(200,115,75,0.26)' },
-    { id: 'magenta', name: 'Viva Magenta', code: '18-1750 TCX', year: '2023', sw: '#BB2649', bg: '#FBF1F3', glass: 'rgba(251,241,243,0.5)', ac: '#BB2649', ac2: '#9A1E3B', band: '#4E1222', line: 'rgba(187,38,73,0.24)' },
-    { id: 'peri', name: 'Very Peri', code: '17-3938 TCX', year: '2022', sw: '#6667AB', bg: '#F2F2F9', glass: 'rgba(242,242,249,0.5)', ac: '#6667AB', ac2: '#4F5094', band: '#2C2D57', line: 'rgba(102,103,171,0.26)' }
+    { id: 'classic', name: 'Классика', code: 'Ч/Б', sw: '#111111' },
+    { id: 'cloud', name: 'Cloud Dancer', code: '11-4201 TCX', sw: '#F0EEE9' },
+    { id: 'acacia', name: 'Acacia', code: '13-0640 TCX', sw: '#DACD65' },
+    { id: 'marina', name: 'Marina', code: '17-4041 TCX', sw: '#4F84C4' },
+    { id: 'muskmelon', name: 'Muskmelon', code: '15-1242 TCX', sw: '#EC935E' },
+    { id: 'lava', name: 'Lava Falls', code: '18-1552 TCX', sw: '#9A3B34' },
+    { id: 'dustyrose', name: 'Dusty Rose', code: '17-1718 TCX', sw: '#BA797D' },
+    { id: 'amaranth', name: 'Amaranth', code: '19-2410 TCX', sw: '#6F3C56' },
+    { id: 'lilac', name: 'Burnished Lilac', code: '15-1905 TCX', sw: '#C5AEB1' },
+    { id: 'dutch', name: 'Dutch Canal', code: '14-4124 TCX', sw: '#8FB8D8' },
+    { id: 'banana', name: 'Pale Banana', code: '12-0824 TCX', sw: '#FAE199' },
+    { id: 'shale', name: 'Shale Green', code: '16-6116 TCX', sw: '#739072' }
   ];
   var KEY = 'hs-palette';
 
-  function get() { try { return localStorage.getItem(KEY) || 'classic'; } catch (e) { return 'classic'; } }
+  function get() { var v; try { v = localStorage.getItem(KEY); } catch (e) {} return P.some(function (p) { return p.id === v; }) ? v : 'classic'; }
   function set(id) {
     try { localStorage.setItem(KEY, id); } catch (e) {}
     if (id === 'classic') document.documentElement.removeAttribute('data-palette');
@@ -20,6 +26,8 @@
     var pop = document.querySelector('.pal-pop');
     if (!pop) return;
     pop.classList.remove('is-open');
+    document.documentElement.classList.remove('pal-open');
+    document.querySelectorAll('.pal-btn').forEach(function (b) { b.setAttribute('aria-expanded', 'false'); b.setAttribute('aria-label', 'Цвет сайта'); });
     setTimeout(function () { pop.remove(); }, 200);
   }
 
@@ -28,15 +36,19 @@
     var pop = document.createElement('div');
     pop.className = 'pal-pop';
     pop.setAttribute('role', 'menu');
-    pop.innerHTML = '<div class="pal-pop__t">Цвет года Pantone</div><div class="pal-grid">' + P.map(function (p) {
+    pop.innerHTML = '<div class="pal-pop__t">Выберите своё настроение<small>Цвета Pantone 2026</small></div><div class="pal-grid">' + P.map(function (p) {
       var brand = p.id === 'classic' ? 'H-STUDIO' : 'PANTONE';
-      return '<button type="button" role="menuitemradio" aria-checked="' + (p.id === cur) + '" aria-label="' + p.name + (p.id === 'classic' ? '' : ', ' + p.year) + '" data-pal="' + p.id + '" class="pal-chip' + (p.id === cur ? ' is-on' : '') + '"><span class="pal-chip__c" style="background:' + p.sw + '"><span class="pal-chip__y">' + p.year + '</span></span><span class="pal-chip__l"><b>' + brand + '</b><small>' + p.code + '</small><em>' + p.name + '</em></span></button>';
+      return '<button type="button" role="menuitemradio" aria-checked="' + (p.id === cur) + '" aria-label="' + p.name + '" data-pal="' + p.id + '" class="pal-chip' + (p.id === cur ? ' is-on' : '') + '"><span class="pal-chip__c" style="background:' + p.sw + '"></span><span class="pal-chip__l"><b>' + brand + '</b><small>' + p.code + '</small><em>' + p.name + '</em></span></button>';
     }).join('') + '</div>';
     document.body.appendChild(pop);
     var r = btn.getBoundingClientRect();
     var left = Math.min(Math.max(16, r.right - pop.offsetWidth), window.innerWidth - pop.offsetWidth - 16);
     pop.style.left = left + 'px';
     pop.style.top = (r.bottom + 10) + 'px';
+    pop.style.maxHeight = (window.innerHeight - r.bottom - 26) + 'px';
+    document.documentElement.classList.add('pal-open');
+    btn.setAttribute('aria-expanded', 'true');
+    btn.setAttribute('aria-label', 'Закрыть выбор цвета');
     requestAnimationFrame(function () { pop.classList.add('is-open'); });
   }
 
