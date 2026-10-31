@@ -71,8 +71,8 @@
         </div>
         <form class="off-7 form" action="contacts.html">
           <div class="row2">
-            <div class="field"><label for="f-name">Имя</label><input id="f-name" name="name" type="text" placeholder="Как к вам обращаться" autocomplete="name"></div>
-            <div class="field"><label for="f-phone">Телефон</label><input id="f-phone" name="phone" type="tel" placeholder="+7" autocomplete="tel"></div>
+            <div class="field"><label for="f-name">Имя</label><input id="f-name" name="name" type="text" placeholder="Как к вам обращаться" autocomplete="name" required></div>
+            <div class="field"><label for="f-phone">Телефон</label><input id="f-phone" name="phone" type="tel" placeholder="+7" autocomplete="tel" required></div>
           </div>
           <div class="row2">
             <div class="field"><label for="f-type">Тип объекта</label>
@@ -129,6 +129,7 @@
 </template>
 <script src="js/idiomorph.min.js"></script>
 <script src="js/dc-runtime.js"></script>
+<script src="js/form.js"></script>
 <script>
 
 class Component extends DCLogic {
