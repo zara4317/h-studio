@@ -44,8 +44,10 @@
     var r = btn.getBoundingClientRect();
     var left = Math.min(Math.max(16, r.right - pop.offsetWidth), window.innerWidth - pop.offsetWidth - 16);
     pop.style.left = left + 'px';
-    pop.style.top = (r.bottom + 10) + 'px';
-    pop.style.maxHeight = (window.innerHeight - r.bottom - 26) + 'px';
+    var hd = document.querySelector('.header');
+    var hb = Math.max(r.bottom, hd ? hd.getBoundingClientRect().bottom : 0);
+    pop.style.top = (hb + 8) + 'px';
+    pop.style.maxHeight = (window.innerHeight - hb - 24) + 'px';
     document.documentElement.classList.add('pal-open');
     btn.setAttribute('aria-expanded', 'true');
     btn.setAttribute('aria-label', 'Закрыть выбор цвета');
