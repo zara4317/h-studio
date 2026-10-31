@@ -215,7 +215,12 @@ class Component extends DCLogic {
       const scrolled = y > 40;
       const hidden = false;
       if (scrolled && this.state?.navHover && !this.state?.mega) this.setState({ navHover: false });
-      this.lastY = y;
+      let up = !!this.state?.up;
+      if (up) { if (y < this.lastY) this.lastY = y; else if (y - this.lastY > 8) { up = false; this.lastY = y; } }
+      else { if (y > this.lastY) this.lastY = y; else if (this.lastY - y > 8) { up = true; this.lastY = y; } }
+      if (!scrolled) up = false;
+      clearTimeout(this.idleT);
+      if (scrolled && !up) this.idleT = setTimeout(() => { this.lastY = window.scrollY || document.documentElement.scrollTop || 0; if (!this.state?.up) this.setState({ up: true }); }, 250);
       const doc = document.documentElement;
       const fh = 356;
       const slot = document.querySelector('.footer-slot');
@@ -223,7 +228,7 @@ class Component extends DCLogic {
       let fp = (y + window.innerHeight - top - 16) / fh;
       fp = Math.round(Math.max(0, Math.min(1, fp)) * 25) / 25;
       if (doc.scrollHeight <= window.innerHeight + 2) fp = 1;
-      if (scrolled !== this.state?.scrolled || hidden !== this.state?.hidden || fp !== (this.state?.fp || 0)) this.setState({ scrolled, hidden, fp });
+      if (scrolled !== this.state?.scrolled || hidden !== this.state?.hidden || up !== !!this.state?.up || fp !== (this.state?.fp || 0)) this.setState({ scrolled, hidden, up, fp });
     };
     window.addEventListener('scroll', this.onScroll, { passive: true });
     this.onScroll();
@@ -284,7 +289,7 @@ class Component extends DCLogic {
     return v;
   }
   renderVals() {
-    return { headerClass: (this.state?.scrolled ? 'is-scrolled' : ''), pageClass: '', navCls: (!this.state?.scrolled || this.state?.navHover || this.state?.mega || this.state?.menuOpen) ? 'show-nav' : '', navHover: () => { if (!this.state?.navHover) this.setState({ navHover: true }); }, navLeave: () => { this.megaVals().closeMega(); if (this.state?.navHover) this.setState({ navHover: false }); }, footerP: String(this.state?.fp || 0), ...this.themeVals(), ...this.menuVals(), ...this.logoVals(), ...this.megaVals() };
+    return { headerClass: (this.state?.scrolled ? 'is-scrolled' : ''), pageClass: '', navCls: (!this.state?.scrolled || this.state?.up || this.state?.navHover || this.state?.mega || this.state?.menuOpen) ? 'show-nav' : '', navHover: () => { if (!this.state?.navHover) this.setState({ navHover: true }); }, navLeave: () => { this.megaVals().closeMega(); if (this.state?.navHover) this.setState({ navHover: false }); }, footerP: String(this.state?.fp || 0), ...this.themeVals(), ...this.menuVals(), ...this.logoVals(), ...this.megaVals() };
   }
 }
 
