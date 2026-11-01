@@ -1,4 +1,18 @@
 (function () {
+  var pre = document.querySelector('.pre');
+  function done() {
+    if (!pre) return;
+    var shown = parseFloat(getComputedStyle(pre).opacity) > 0.01;
+    if (!shown) { pre.remove(); pre = null; return; }
+    var el = pre;
+    pre = null;
+    el.style.opacity = getComputedStyle(el).opacity;
+    el.classList.add('is-done');
+    requestAnimationFrame(function () { requestAnimationFrame(function () { el.style.opacity = '0'; }); });
+    setTimeout(function () { el.remove(); }, 500);
+  }
+  if (document.readyState === 'complete') done(); else window.addEventListener('load', done);
+
   var KEY = 'hs-cookie';
   var arrow = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"></path></svg>';
 
