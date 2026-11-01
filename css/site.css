@@ -442,9 +442,9 @@ a{color:inherit}a:hover{color:inherit}
 .fcard-cta{position:absolute;right:32px;bottom:28px}
 .fcar-ctl{position:absolute;top:40%;transform:translateY(-50%);width:96px;height:96px;border-radius:50%;border:1px solid rgba(255,255,255,0.55);background:transparent;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:2;transition:background .25s ease}
 .fcar-ctl:hover{background:rgba(255,255,255,0.12)}
-.fcar-ctl.prev{left:12px}.fcar-ctl.next{right:12px}
+.fcar-ctl.prev{left:84px}.fcar-ctl.next{right:84px}
 .fcar-ctl{box-sizing:border-box;padding:0}
-@media (max-width:860px){.fcar-ctl{width:52px;height:52px;top:36%}.fcar-ctl.prev{left:8px}.fcar-ctl.next{right:8px}}
+@media (max-width:860px){.fcar-ctl{width:52px;height:52px;top:36%}.fcar-ctl.prev{left:64px}.fcar-ctl.next{right:64px}}
 .gcards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
 .gcard{display:flex;flex-direction:column;gap:14px;text-decoration:none;color:var(--fg)}
 .gcard-media{aspect-ratio:1;border-radius:4px;overflow:hidden}
