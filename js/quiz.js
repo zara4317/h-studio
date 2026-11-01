@@ -11,12 +11,16 @@
   ];
   var MATERIALS = [
     { id: 'oak', t: 'Светлый дуб', img: 'img/quiz/m-oak.jpg' },
-    { id: 'darkwood', t: 'Тёмное дерево', img: 'img/quiz/m-darkwood.jpg' },
+    { id: 'walnut', t: 'Орех', img: 'img/quiz/m-walnut.jpg' },
     { id: 'travertine', t: 'Травертин', img: 'img/quiz/m-travertine.jpg' },
+    { id: 'marble', t: 'Белый мрамор', img: 'img/quiz/m-marble.jpg' },
+    { id: 'nero', t: 'Чёрный мрамор', img: 'img/quiz/m-nero.jpg' },
+    { id: 'onyx', t: 'Оникс', img: 'img/quiz/m-onyx.jpg' },
+    { id: 'terrazzo', t: 'Терраццо', img: 'img/quiz/m-terrazzo.jpg' },
     { id: 'microcement', t: 'Микроцемент', img: 'img/quiz/m-microcement.jpg' },
     { id: 'plaster', t: 'Декоративная штукатурка', img: 'img/quiz/m-plaster.jpg' },
-    { id: 'linen', t: 'Лён и текстиль', img: 'img/quiz/m-linen.jpg' },
-    { id: 'brass', t: 'Латунь', img: 'img/quiz/m-brass.jpg' },
+    { id: 'glaze', t: 'Глазурованная керамика', img: 'img/quiz/m-glaze.jpg' },
+    { id: 'rattan', t: 'Ротанг и плетение', img: 'img/quiz/m-rattan.jpg' },
     { id: 'brick', t: 'Кирпич', img: 'img/quiz/m-brick.jpg' }
   ];
   var PALETTES = [
