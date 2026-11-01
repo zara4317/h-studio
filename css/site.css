@@ -104,7 +104,8 @@ a{color:inherit}a:hover{color:inherit}
 .hero h1{margin:0 0 32px;font-size:clamp(40px,7.4vw,118px);line-height:0.98;color:#ffffff;max-width:1200px}
 .hero-row{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:32px;align-items:end}
 .hero-row p{grid-column:span 6;margin:0;font-size:17px;line-height:1.55;color:rgba(255,255,255,0.85);max-width:540px}
-.hero-actions{grid-column:8 / span 5;display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end}
+.hero-actions{grid-column:7 / span 6;display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end}
+.hero-actions .btn{flex:1 1 230px;max-width:300px;justify-content:center}
 .scroll-cue{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);z-index:2;color:#ffffff;opacity:0.8;animation:cue 2.2s ease-in-out infinite}
 @keyframes cue{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,8px)}}
 .hero-compact{min-height:min(72vh,680px)}
@@ -334,7 +335,7 @@ a{color:inherit}a:hover{color:inherit}
   .footer-cols{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
 }
 @media (max-width:480px){
-  .hero-actions{flex-direction:column;align-items:stretch}.hero-actions .btn{width:100%}
+  .hero-actions{flex-direction:column;align-items:stretch}.hero-actions .btn{width:100%;max-width:none}
   .facts{grid-template-columns:repeat(1,minmax(0,1fr))}
   .factbar{grid-template-columns:repeat(1,minmax(0,1fr))}
 }
@@ -414,7 +415,10 @@ a{color:inherit}a:hover{color:inherit}
 .zmod .desc{margin:0;font-size:17px;line-height:1.55;color:var(--muted);max-width:640px}
 .zmod .chip{display:inline-flex;align-items:center;min-height:0;border:0;font-size:11px;font-weight:500;letter-spacing:0.02em;text-transform:uppercase;padding:6px 12px;border-radius:999px;background:var(--fg);color:var(--bg);line-height:1.2;cursor:inherit}
 .zmod .chip-dark{background:rgba(0,0,0,0.55);color:#fff}
-.btn-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn-row{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:12px;width:max-content;max-width:100%;margin-top:28px}
+.btn-row .btn{justify-content:center;min-width:0}
+.btn-row--soc{margin-top:32px}
+@media (max-width:560px){.btn-row{grid-auto-flow:row;width:100%}.btn-row--soc{grid-auto-flow:column}.btn-row--soc .btn{padding-left:8px;padding-right:8px}}
 .intro{padding:120px 0}
 .intro-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:clamp(32px,6vw,120px);align-items:start}
 .intro-h{margin:0;font-size:clamp(28px,3vw,56px);line-height:1.12}
