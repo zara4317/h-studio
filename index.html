@@ -9,7 +9,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
 <meta name="description" content="H-studio — архитектура и дизайн интерьеров в Москве: квартиры, частные дома, коммерческие пространства. От идеи до авторского надзора.">
-<link rel="stylesheet" href="css/site.css?v=20261101g">
+<link rel="stylesheet" href="css/site.css?v=20261101h">
 <script>(function(){var d=document.documentElement;try{var t=localStorage.getItem('hs-theme');if(t==='dark'||((!t||t==='auto')&&window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches))d.classList.add('pre-dark')}catch(e){}})()</script>
 <style>body{margin:0}</style>
 </head>
@@ -300,7 +300,7 @@ class Component extends DCLogic {
       this.setState({ car: t, carJump: false });
       if (t < 0 || t >= n) this.carT = setTimeout(() => this.setState({ car: (t + n) % n, carJump: true }), 720);
     };
-    return { carX: `calc(${-(i + 1)} * (100vw - 2 * clamp(24px, 2.4vw, 48px) + 5px))`, carCls: this.state?.carJump ? 'is-jump' : '', carPrev: () => go(i - 1), carNext: () => go(i + 1) };
+    return { carX: `calc(clamp(24px, 2.4vw, 48px) - ${i + 1} * (100% - 2 * clamp(24px, 2.4vw, 48px) + 5px))`, carCls: this.state?.carJump ? 'is-jump' : '', carPrev: () => go(i - 1), carNext: () => go(i + 1) };
   }
   renderVals() {
     return { headerClass: (this.state?.scrolled ? 'is-scrolled' : ''), pageClass: '', navCls: this.state?.mob ? ((!this.state?.scrolled || this.state?.menuOpen) ? 'show-nav' : 'show-burger') : ((!this.state?.scrolled || this.state?.up || this.state?.navHover || this.state?.mega || this.state?.menuOpen) ? 'show-nav' : ''), navHover: () => { if (!this.state?.navHover) this.setState({ navHover: true }); }, navLeave: () => { this.megaVals().closeMega(); if (this.state?.navHover) this.setState({ navHover: false }); }, footerP: String(this.state?.fp || 0), ...this.themeVals(), ...this.menuVals(), ...this.logoVals(), ...this.megaVals(), ...this.carVals() };
