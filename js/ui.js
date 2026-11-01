@@ -28,14 +28,46 @@
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
   });
-  document.body.appendChild(top);
+  var PAL = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.8 1.6-1.6 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-.9.7-1.6 1.6-1.6H16a5 5 0 0 0 5-5C21 6.4 17 3 12 3z"></path><circle cx="7.5" cy="11" r="1"></circle><circle cx="10.5" cy="7" r="1"></circle><circle cx="15" cy="7.5" r="1"></circle></svg>';
+  var fab = document.createElement('div');
+  fab.className = 'fab';
+  var pal = document.createElement('button');
+  pal.type = 'button';
+  pal.className = 'fab__btn pal-btn';
+  pal.setAttribute('aria-label', 'Цвет сайта');
+  pal.title = 'Цвет сайта';
+  pal.innerHTML = PAL;
+  var th = document.createElement('button');
+  th.type = 'button';
+  th.className = 'fab__btn fab__theme';
+  function headerTheme() { return document.querySelector('.header .hd-tools .theme-btn:not(.pal-btn)'); }
+  function syncTheme() {
+    var h = headerTheme();
+    if (!h) return;
+    th.innerHTML = h.innerHTML;
+    th.title = h.title || 'Тема';
+    th.setAttribute('aria-label', 'Переключить тему');
+  }
+  th.addEventListener('click', function () {
+    var h = headerTheme();
+    if (h) h.click();
+    setTimeout(syncTheme, 30);
+    setTimeout(syncTheme, 200);
+  });
+  fab.appendChild(pal);
+  fab.appendChild(th);
+  fab.appendChild(top);
+  document.body.appendChild(fab);
+  syncTheme();
+  setTimeout(syncTheme, 100);
+  setTimeout(syncTheme, 600);
 
   var VARS = ['--bg', '--fg', '--line-2', '--muted', '--text2'];
   function sync() {
     var pg = document.querySelector('.page');
     if (!pg) return;
     var cs = getComputedStyle(pg);
-    [top, document.querySelector('.ck')].forEach(function (el) {
+    [fab, document.querySelector('.ck')].forEach(function (el) {
       if (!el) return;
       VARS.forEach(function (k) { el.style.setProperty(k, cs.getPropertyValue(k)); });
     });

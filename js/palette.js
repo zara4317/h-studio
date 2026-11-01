@@ -45,9 +45,16 @@
     var left = Math.min(Math.max(16, r.right - pop.offsetWidth), window.innerWidth - pop.offsetWidth - 16);
     pop.style.left = left + 'px';
     var hd = document.querySelector('.header');
-    var hb = Math.max(r.bottom, hd ? hd.getBoundingClientRect().bottom : 0);
-    pop.style.top = (hb + 8) + 'px';
-    pop.style.maxHeight = (window.innerHeight - hb - 24) + 'px';
+    var hb = hd ? hd.getBoundingClientRect().bottom : 0;
+    if (r.top > window.innerHeight / 2) {
+      pop.style.top = 'auto';
+      pop.style.bottom = (window.innerHeight - r.top + 10) + 'px';
+      pop.style.maxHeight = (r.top - Math.max(hb, 0) - 18) + 'px';
+    } else {
+      hb = Math.max(r.bottom, hb);
+      pop.style.top = (hb + 8) + 'px';
+      pop.style.maxHeight = (window.innerHeight - hb - 24) + 'px';
+    }
     document.documentElement.classList.add('pal-open');
     btn.setAttribute('aria-expanded', 'true');
     btn.setAttribute('aria-label', 'Закрыть выбор цвета');
